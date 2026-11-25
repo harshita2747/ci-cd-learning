@@ -1,0 +1,29 @@
+name : ci-cd-learning
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check File
+        run: |
+          if [ -f index.txt ]; then
+            echo "index.txt exists!"
+          else
+            echo "File not found!"
+            exit 1
+          fi
+
+      - name: Read File Content
+        run: cat index.txt
+
+      - name: Success
+        run: echo "CI Pipeline Successful!"
